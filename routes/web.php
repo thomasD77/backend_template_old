@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// General settings
+Auth::routes(['verify'=> true]);
+
 // Example Routes
 Route::view('/', 'landing');
 Route::match(['get', 'post'], '/dashboard', function(){
-    return view('dashboard');
+    return view('admin/dashboard');
 });
 Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Backend Routes
+Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
+    Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
+});

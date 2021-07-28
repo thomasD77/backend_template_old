@@ -155,23 +155,23 @@
                                     <span>Default</span>
                                     <i class="fa fa-circle text-default"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ mix('css/themes/amethyst.css') }}" href="#">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/amethyst.css') }}" href="#">
                                     <span>Amethyst</span>
                                     <i class="fa fa-circle text-amethyst"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ mix('css/themes/city.css') }}" href="#">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/city.css') }}" href="#">
                                     <span>City</span>
                                     <i class="fa fa-circle text-city"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ mix('css/themes/flat.css') }}" href="#">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/flat.css') }}" href="#">
                                     <span>Flat</span>
                                     <i class="fa fa-circle text-flat"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ mix('css/themes/modern.css') }}" href="#">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/modern.css') }}" href="#">
                                     <span>Modern</span>
                                     <i class="fa fa-circle text-modern"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ mix('css/themes/smooth.css') }}" href="#">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/smooth.css') }}" href="#">
                                     <span>Smooth</span>
                                     <i class="fa fa-circle text-smooth"></i>
                                 </a>
@@ -312,13 +312,13 @@
                         <div class="dropdown d-inline-block ms-2">
                             <button type="button" class="btn btn-sm btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="Header Avatar" style="width: 21px;">
-                                <span class="d-none d-sm-inline-block ms-2">John</span>
+                                <span class="d-none d-sm-inline-block ms-2">{{ Auth::user()->name }}</span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ms-1 mt-1"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0" aria-labelledby="page-header-user-dropdown">
                                 <div class="p-3 text-center bg-body-light border-bottom rounded-top">
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
-                                    <p class="mt-2 mb-0 fw-medium">John Smith</p>
+                                    <p class="mt-2 mb-0 fw-medium">{{ Auth::user()->name }}</p>
                                     <p class="mb-0 text-muted fs-sm fw-medium">Web Developer</p>
                                 </div>
                                 <div class="p-2">
@@ -340,7 +340,16 @@
                                         <span class="fs-sm fw-medium">Lock Account</span>
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span class="fs-sm fw-medium">Log Out</span>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                            <i class="fas fa-sign-out-alt mx-3"></i>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none bg-dark">
+                                            @csrf
+                                        </form>
                                     </a>
                                 </div>
                             </div>
