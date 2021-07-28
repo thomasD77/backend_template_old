@@ -32,4 +32,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
     Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
+    Route::resource('users', App\Http\Controllers\AdminUsersController::class);
 });

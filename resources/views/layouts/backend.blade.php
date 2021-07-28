@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 5 Admin Template &amp; UI Framework</title>
+        <title>Backend_template</title>
 
         <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -226,6 +226,27 @@
                                     <span class="nav-main-link-name">Dashboard</span>
                                 </a>
                             </li>
+
+                            <li class="nav-main-heading text-uppercase">USER INTERFACE</li>
+                            <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                                    <i class="nav-main-link-icon  fa fa-users"></i>
+                                    <span class="nav-main-link-name ">Users</span>
+                                </a>
+                                <ul class="nav-main-submenu">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('users.index')}}">
+                                            <span class="nav-main-link-name">Data</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{ asset('pages/slick') }}">
+                                            <span class="nav-main-link-name">Roles</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class="nav-main-heading">Various</li>
                             <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
@@ -250,6 +271,7 @@
                                     </li>
                                 </ul>
                             </li>
+
                             <li class="nav-main-heading">More</li>
                             <li class="nav-main-item open">
                                 <a class="nav-main-link" href="{{ asset ('/') }}">

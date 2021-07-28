@@ -9,7 +9,7 @@
 @section('js_after')
     <!-- jQuery (required for DataTables plugin) -->
     <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-    
+
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.js') }}"></script>
@@ -75,7 +75,7 @@
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full fs-sm">
+                <table class="table table-bordered table-hover table-vcenter js-dataTable-full fs-sm">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">#</th>
