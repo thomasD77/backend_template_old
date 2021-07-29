@@ -145,7 +145,6 @@
       <h3 class="block-title">Billing Information</h3>
     </div>
     <div class="block-content">
-      <form action="be_pages_projects_edit.php" method="POST" onsubmit="return false;">
         <div class="row push">
           <div class="col-lg-4">
             <p class="fs-sm text-muted">
@@ -153,48 +152,109 @@
             </p>
           </div>
           <div class="col-lg-8 col-xl-5">
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-company-name">Company Name (Optional)</label>
-              <input type="text" class="form-control" id="one-profile-edit-company-name" name="one-profile-edit-company-name">
-            </div>
-            <div class="row mb-4">
-              <div class="col-6">
-                <label class="form-label" for="one-profile-edit-firstname">Firstname</label>
-                <input type="text" class="form-control" id="one-profile-edit-firstname" name="one-profile-edit-firstname">
-              </div>
-              <div class="col-6">
-                <label class="form-label" for="one-profile-edit-lastname">Lastname</label>
-                <input type="text" class="form-control" id="one-profile-edit-lastname" name="one-profile-edit-lastname">
-              </div>
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-street-1">Street Address 1</label>
-              <input type="text" class="form-control" id="one-profile-edit-street-1" name="one-profile-edit-street-1">
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-street-2">Street Address 2</label>
-              <input type="text" class="form-control" id="one-profile-edit-street-2" name="one-profile-edit-street-2">
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-city">City</label>
-              <input type="text" class="form-control" id="one-profile-edit-city" name="one-profile-edit-city">
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-postal">Postal code</label>
-              <input type="text" class="form-control" id="one-profile-edit-postal" name="one-profile-edit-postal">
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-vat">VAT Number</label>
-              <input type="text" class="form-control" id="one-profile-edit-vat" name="one-profile-edit-vat" value="IT00000000" disabled>
-            </div>
-            <div class="mb-4">
-              <button type="submit" class="btn btn-alt-primary">
-                Update
-              </button>
-            </div>
+              @if(Auth::user()->billing)
+                  {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminBillingController@update', $user->billing->id]]) !!}
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-company', 'Company (Optional):',['class'=>'form-label']) !!}
+                      {!! Form::text('company',$user->billing? $user->billing->company : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="row mb-4">
+                      <div class="form-group col-6">
+                          {!! Form::label('one-profile-edit-firstname', 'Firstname:',['class'=>'form-label']) !!}
+                          {!! Form::text('firstname',$user->billing? $user->billing->firstname : "",['class'=>'form-control']) !!}
+                      </div>
+                      <div class="form-group col-6">
+                          {!! Form::label('one-profile-edit-lastname', 'Lastname:',['class'=>'form-label']) !!}
+                          {!! Form::text('lastname',$user->billing? $user->billing->lastname : "",['class'=>'form-control']) !!}
+                      </div>
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-streetAddress1', 'Street Address 1:',['class'=>'form-label']) !!}
+                      {!! Form::text('streetAddress1',$user->billing? $user->billing->streetAddress1 : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-streetAddress2', 'Street Address 2:',['class'=>'form-label']) !!}
+                      {!! Form::text('streetAddress2',$user->billing? $user->billing->streetAddress2 : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-city', 'City:',['class'=>'form-label']) !!}
+                      {!! Form::text('city',$user->billing? $user->billing->city : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-postalCode', 'Postal Code:',['class'=>'form-label']) !!}
+                      {!! Form::text('postalCode',$user->billing? $user->billing->postalCode : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
+                      {!! Form::text('VAT',$user->billing? $user->billing->VAT : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                      <div class="form-group mr-1">
+                          {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
+                      </div>
+                      {!! Form::close() !!}
+              @else
+                  {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBillingController@store']]) !!}
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-company', 'Company (Optional):',['class'=>'form-label']) !!}
+                      {!! Form::text('company',$user->billing? $user->billing->company : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="row mb-4">
+                      <div class="form-group col-6">
+                          {!! Form::label('one-profile-edit-firstname', 'Firstname:',['class'=>'form-label']) !!}
+                          {!! Form::text('firstname',$user->billing? $user->billing->firstname : "",['class'=>'form-control']) !!}
+                      </div>
+                      <div class="form-group col-6">
+                          {!! Form::label('one-profile-edit-lastname', 'Lastname:',['class'=>'form-label']) !!}
+                          {!! Form::text('lastname',$user->billing? $user->billing->lastname : "",['class'=>'form-control']) !!}
+                      </div>
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-streetAddress1', 'Street Address 1:',['class'=>'form-label']) !!}
+                      {!! Form::text('streetAddress1',$user->billing? $user->billing->streetAddress1 : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-streetAddress2', 'Street Address 2:',['class'=>'form-label']) !!}
+                      {!! Form::text('streetAddress2',$user->billing? $user->billing->streetAddress2 : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-city', 'City:',['class'=>'form-label']) !!}
+                      {!! Form::text('city',$user->billing? $user->billing->city : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-postalCode', 'Postal Code:',['class'=>'form-label']) !!}
+                      {!! Form::text('postalCode',$user->billing? $user->billing->postalCode : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="form-group mb-4">
+                      {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
+                      {!! Form::text('VAT',$user->billing? $user->billing->VAT : "",['class'=>'form-control']) !!}
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                      <div class="form-group mr-1">
+                          {!! Form::submit('Save',['class'=>'btn btn-alt-primary']) !!}
+                      </div>
+                      {!! Form::close() !!}
+              @endif
+
+          </div>
           </div>
         </div>
-      </form>
     </div>
   </div>
   <!-- END Billing Information -->
