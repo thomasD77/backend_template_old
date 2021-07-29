@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rules\Password;
 
 class AdminUsersController extends Controller
 {
@@ -38,6 +42,7 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request);
     }
 
     /**
@@ -74,6 +79,14 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        dd($request);
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->update();
+
+        return view('admin.dashboard');
     }
 
     /**
@@ -86,4 +99,40 @@ class AdminUsersController extends Controller
     {
         //
     }
+
+    public function updatePassword(Request $request, $id)
+    {
+        //
+        $secret = Auth::user()->password;
+
+        if (Hash::check($request->currentPassword, $secret)) {                                  // Check if Current Password is same like input Password
+            if ($request->newPassword == $request->confirmPassword) {                           // Check if the new input Passwords are the same
+                $user = User::findOrFail($id);
+
+                $request->validate([
+                    'newPassword' => [
+                        'required',
+                        Password::min(8)
+                            ->mixedCase()
+                            ->letters()
+                            ->numbers()
+                            ->symbols()
+                    ],
+                ]);
+
+                $newHashPassword = Hash::make($request->newPassword);
+                $user->password = $newHashPassword;
+                $user->update();
+                return view('admin.dashboard');
+
+            } else {
+                Session::flash('user_password', 'The New Password is not duplicated correct, please try again.');
+                return redirect()->back();
+            }
+        }
+
+        Session::flash('user_message', 'The Current Password is not correct, please try again.');
+        return redirect()->back();
+    }
+
 }

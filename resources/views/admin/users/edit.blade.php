@@ -15,8 +15,8 @@
       <h2 class="h4 fw-normal text-white-75">
           <?php echo Auth::user()->name; ?>
       </h2>
-      <a class="btn btn-alt-secondary" href="be_pages_generic_profile.php">
-        <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Profile
+      <a class="btn btn-alt-secondary" href="{{ asset('/dashboard') }}">
+        <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Dashboard
       </a>
     </div>
   </div>
@@ -31,45 +31,59 @@
       <h3 class="block-title">User Profile</h3>
     </div>
     <div class="block-content">
-      <form action="be_pages_projects_edit.php" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-        <div class="row push">
+          <div class="row push">
           <div class="col-lg-4">
             <p class="fs-sm text-muted">
               Your account’s vital info. Your username will be publicly visible.
             </p>
           </div>
           <div class="col-lg-8 col-xl-5">
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-username">Username</label>
-              <input type="text" class="form-control" id="one-profile-edit-username" name="one-profile-edit-username" placeholder="Enter your username.." value="<?php echo Auth::user()->username; ?>">
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-name">Name</label>
-              <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" placeholder="Enter your name.." value="<?php echo Auth::user()->name; ?>">
-            </div>
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-email">Email Address</label>
-              <input type="email" class="form-control" id="one-profile-edit-email" name="one-profile-edit-email" placeholder="Enter your email.." value="<?php echo Auth::user()->email; ?>">
-            </div>
-            <div class="mb-4">
-              <label class="form-label">Your Avatar</label>
-              <div class="mb-4">
-                  <?php $one->get_avatar(13); ?>
+              {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],
+            'files'=>true])
+             !!}
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-username', 'Username:',['class'=>'form-label']) !!}
+                  {!! Form::text('username',$user->username,['class'=>'form-control']) !!}
               </div>
-              <div class="mb-4">
-                <label for="one-profile-edit-avatar" class="form-label">Choose a new avatar</label>
-                <input class="form-control" type="file" id="one-profile-edit-avatar">
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-name', 'Name:', ['class'=>'form-label']) !!}
+                  {!! Form::text('name',$user->name,['class'=>'form-control']) !!}
               </div>
-            </div>
-            <div class="mb-4">
-              <button type="submit" class="btn btn-alt-primary">
-                Update
-              </button>
-            </div>
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-email', 'E-mail:', ['class'=>'form-label']) !!}
+                  {!! Form::text('email',$user->email,['class'=>'form-control']) !!}
+              </div>
+
+<!--              <div class="form-group">
+                  {!! Form::label('password', 'Password:') !!}
+                  {!! Form::password('password',['class'=>'form-control']) !!}
+              </div>
+              <div class="form-group">
+                  {!! Form::label('photo_id', 'Photo:') !!}
+                  {!! Form::file('photo_id',null,['class'=>'form-control']) !!}
+              </div>-->
+
+              <div class="d-flex justify-content-between">
+                  <div class="form-group mr-1">
+                      {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
+                  </div>
+              {!! Form::close() !!}
+
+
+<!--                <div class="mb-4">
+                  <label class="form-label">Your Avatar</label>
+                  <div class="mb-4">
+                      <?php $one->get_avatar(13); ?>
+                  </div>
+                  <div class="mb-4">
+                    <label for="one-profile-edit-avatar" class="form-label">Choose a new avatar</label>
+                    <input class="form-control" type="file" id="one-profile-edit-avatar">
+                  </div>
+                </div>-->
+
           </div>
         </div>
-      </form>
-    </div>
+      </div>
   </div>
   <!-- END User Profile -->
 
@@ -79,7 +93,6 @@
       <h3 class="block-title">Change Password</h3>
     </div>
     <div class="block-content">
-      <form action="be_pages_projects_edit.php" method="POST" onsubmit="return false;">
         <div class="row push">
           <div class="col-lg-4">
             <p class="fs-sm text-muted">
@@ -87,31 +100,42 @@
             </p>
           </div>
           <div class="col-lg-8 col-xl-5">
-            <div class="mb-4">
-              <label class="form-label" for="one-profile-edit-password">Current Password</label>
-              <input type="password" class="form-control" id="one-profile-edit-password" name="one-profile-edit-password">
-            </div>
-            <div class="row mb-4">
-              <div class="col-12">
-                <label class="form-label" for="one-profile-edit-password-new">New Password</label>
-                <input type="password" class="form-control" id="one-profile-edit-password-new" name="one-profile-edit-password-new">
+              {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@updatePassword',$user->id]]) !!}
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-password', 'Current Password:',['class'=>'form-label']) !!}
+                  {!! Form::password('currentPassword',['class'=>'form-control']) !!}
+                  @if(Session::has('user_message'))
+                      <p class="alert alert-danger my-2">{{session('user_message')}}</p>
+                  @endif
               </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col-12">
-                <label class="form-label" for="one-profile-edit-password-new-confirm">Confirm New Password</label>
-                <input type="password" class="form-control" id="one-profile-edit-password-new-confirm" name="one-profile-edit-password-new-confirm">
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-password-new', 'New Password:',['class'=>'form-label']) !!}
+                  {!! Form::password('newPassword',['class'=>'form-control']) !!}
               </div>
-            </div>
-            <div class="mb-4">
-              <button type="submit" class="btn btn-alt-primary">
-                Update
-              </button>
-            </div>
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-password-new-confirm', 'Confirm Password:',['class'=>'form-label']) !!}
+                  {!! Form::password('confirmPassword',['class'=>'form-control']) !!}
+                  @if(Session::has('user_password'))
+                      <p class="alert alert-danger my-2">{{session('user_password')}}</p>
+                  @endif
+                  @if ($errors->any())
+                      <div class="alert alert-danger mb-0 mt-2">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+              </div>
+
+              <div class="d-flex justify-content-between">
+                  <div class="form-group mr-1">
+                      {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
+                  </div>
+              {!! Form::close() !!}
           </div>
         </div>
-      </form>
-    </div>
   </div>
   <!-- END Change Password -->
 
