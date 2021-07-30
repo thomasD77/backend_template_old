@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BillingRequest;
 use App\Models\Billing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class AdminBillingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BillingRequest $request)
     {
         //
         $billing = new Billing();
@@ -87,7 +88,7 @@ class AdminBillingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BillingRequest $request, $id)
     {
         //
         $billing = Billing::findOrFail($id);

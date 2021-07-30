@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,9 +77,18 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
         //
+        $user = User::where('username', $request->username)
+            ->where('id', '!=', Auth::user()->id)
+            ->get();
+
+        if($user->isNotEmpty()){
+            Session::flash('user_username', 'This Username is already taken. Please try again.');
+            return redirect()->back();
+        }
+
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->username = $request->username;

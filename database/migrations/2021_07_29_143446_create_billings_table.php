@@ -16,14 +16,14 @@ class CreateBillingsTable extends Migration
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->index();
-            $table->string('company')->default('unknown');
-            $table->string('firstname')->default('unknown');
-            $table->string('lastname')->default('unknown');
-            $table->string('streetAddress1')->default('unknown');
+            $table->string('company')->nullable();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('streetAddress1');
             $table->string('streetAddress2')->nullable();
-            $table->string('city')->default('unknown');
-            $table->integer('postalCode')->nullable();
-            $table->string('VAT')->default('unknown');
+            $table->string('city');
+            $table->integer('postalCode');
+            $table->string('VAT');
             $table->timestamps();
         });
     }
