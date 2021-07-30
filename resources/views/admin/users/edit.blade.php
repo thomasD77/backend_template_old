@@ -43,7 +43,7 @@
              !!}
               <div class="form-group mb-4">
                   {!! Form::label('one-profile-edit-username', 'Username:',['class'=>'form-label']) !!}
-                  {!! Form::text('username',$user->username,['class'=>'form-control']) !!}
+                  {!! Form::text('username',$user->username ? $user->username : "" ,['class'=>'form-control']) !!}
               </div>
               <div class="form-group mb-4">
                   {!! Form::label('one-profile-edit-name', 'Name:', ['class'=>'form-label']) !!}
