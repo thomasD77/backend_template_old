@@ -20,7 +20,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'billing_id'
+        'billing_id',
+        'avatar_id'
     ];
 
     /**
@@ -50,5 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function billing()
     {
         return $this->belongsTo(Billing::class);
+    }
+
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class);
     }
 }

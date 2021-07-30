@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
+use App\Models\Avatar;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +69,9 @@ class AdminUsersController extends Controller
     {
         //
         $user = User::findOrfail($id);
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::pluck('name', 'id')
+            ->all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -89,11 +93,26 @@ class AdminUsersController extends Controller
             return redirect()->back();
         }
 
+        /** wegschrijven van de avatar **/
+        if($file = $request->file('avatar_id')){
+            $name = time(). $file->getClientOriginalName();
+            $file->move('media/avatars', $name);
+            $avatar = Avatar::create(['file'=>$name]);
+
+            $user = User::findOrFail($id);
+            $user->avatar_id = $avatar->id;
+            $user->update();
+        }
+
+        /** wegschrijven van de user gegevens **/
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->update();
+
+        /** wegschrijven van de role in tussentabel **/
+        $user->roles()->sync($request->roles, true);
 
         return view('admin.dashboard');
     }

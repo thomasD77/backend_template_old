@@ -63,32 +63,32 @@
                   @enderror
               </div>
 
-<!--              <div class="form-group">
-                  {!! Form::label('password', 'Password:') !!}
-                  {!! Form::password('password',['class'=>'form-control']) !!}
+              <div class="form-group mb-4">
+                  {!! Form::label('one-profile-edit-roles', 'Select Role(s):', ['class'=>'form-label']) !!}
+                  {!! Form::select('roles[]',$roles,$user->roles->pluck('id')->toArray(),['class'=>'form-control',
+                  'multiple'=>'multiple'])!!}
               </div>
-              <div class="form-group">
-                  {!! Form::label('photo_id', 'Photo:') !!}
-                  {!! Form::file('photo_id',null,['class'=>'form-control']) !!}
-              </div>-->
+
+
+
+              <div class="mb-4">
+                  <label class="form-label">Your Avatar</label>
+                  <div class="mb-4">
+                      <img class="rounded-circle" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}">
+
+                  </div>
+                  <div class="form-group mb-4">
+                      {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}
+                      {!! Form::file('avatar_id',['class'=>'form-control']) !!}
+                  </div>
+              </div>
 
               <div class="d-flex justify-content-between">
                   <div class="form-group mr-1">
                       {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
                   </div>
-              {!! Form::close() !!}
-
-
-<!--                <div class="mb-4">
-                  <label class="form-label">Your Avatar</label>
-                  <div class="mb-4">
-                      <?php $one->get_avatar(13); ?>
-                  </div>
-                  <div class="mb-4">
-                    <label for="one-profile-edit-avatar" class="form-label">Choose a new avatar</label>
-                    <input class="form-control" type="file" id="one-profile-edit-avatar">
-                  </div>
-                </div>-->
+                  {!! Form::close() !!}
+              </div>
 
           </div>
         </div>
