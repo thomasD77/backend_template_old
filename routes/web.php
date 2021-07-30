@@ -33,6 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
     Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
     Route::resource('users', App\Http\Controllers\AdminUsersController::class);
+    Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
     Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
 });

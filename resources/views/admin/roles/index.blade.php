@@ -30,7 +30,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        DataTable Users
+                        DataTable Roles
                     </h1>
 
                 </div>
@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Users
+                            Roles
                         </li>
                     </ol>
                 </nav>
@@ -56,7 +56,7 @@
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Users
+                    Roles
                 </h3>
             </div>
             <div class="block-content block-content-full">
@@ -66,31 +66,19 @@
                         <tr>
                             <th class="text-center" style="width: 80px;">#</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 10%;">Avatar</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Username</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Role</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Verified</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Created</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Updated</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if($users)
-                            @foreach($users as $user)
+                        @if($roles)
+                            @foreach($roles as $role)
                         <tr>
-                            <td>{{$user->id ? $user->id : 'No ID'}}</td>
-                            <td>{{$user->name ? $user->name : 'No Name'}}</td>
-                            <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}"></td>
-                            <td>{{$user->username ? $user->username : 'No Username'}}</td>
-                            <td>{{$user->email ? $user->email : 'No Email'}}</td>
-                            <td>@foreach($user->roles as $role)
-                                    <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
-                                @endforeach</td>
-                            <td>{{$user->email_verified_at ? $user->email_verified_at : 'Not Verified'}}</td>
-                            <td>{{$user->created_at->diffForHumans()}}</td>
-                            <td>{{$user->updated_at->diffForHumans()}}</td>
+                            <td>{{$role->id ? $role->id : 'No ID'}}</td>
+                            <td>{{$role->name ? $role->name : 'No Role'}}</td>
+                            <td>{{$role->created_at->diffForHumans()}}</td>
+                            <td>{{$role->updated_at->diffForHumans()}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
