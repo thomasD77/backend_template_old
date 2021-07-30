@@ -9,7 +9,7 @@
   <div class="bg-primary-dark-op">
     <div class="content content-full text-center">
       <div class="my-3">
-          <?php $one->get_avatar(13, '', false, true); ?>
+          <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}">
       </div>
       <h1 class="h2 text-white mb-0">Edit Account</h1>
       <h2 class="h4 fw-normal text-white-75">
@@ -75,7 +75,6 @@
                   <label class="form-label">Your Avatar</label>
                   <div class="mb-4">
                       <img class="rounded-circle" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}">
-
                   </div>
                   <div class="form-group mb-4">
                       {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}
