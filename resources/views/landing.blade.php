@@ -11,7 +11,7 @@
                 <p class="fs-lg fw-medium text-muted mb-4">
                     Welcome to the starter kit! Build something amazing!
                 </p>
-                <a class="btn btn-alt-primary" href="{{ asset('/dashboard') }}">
+                <a class="btn btn-alt-primary" href="{{ route('admin.home') }}">
                     Enter Dashboard
                     <i class="fa fa-fw fa-arrow-right opacity-50 ms-1"></i>
                 </a>

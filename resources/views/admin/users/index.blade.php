@@ -37,10 +37,10 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Examples</a>
+                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            DataTable Users
+                            Users
                         </li>
                     </ol>
                 </nav>
@@ -61,11 +61,12 @@
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <table class="table table-bordered table-hover table-vcenter js-dataTable-full fs-sm">
+                <table class="table table-striped table-hover table-vcenter js-dataTable-full fs-sm">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">#</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Name</th>
+                            <th class="d-none d-sm-table-cell" style="width: 10%;">Avatar</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Username</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Role</th>
@@ -80,6 +81,7 @@
                         <tr>
                             <td>{{$user->id ? $user->id : 'No ID'}}</td>
                             <td>{{$user->name ? $user->name : 'No Name'}}</td>
+                            <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}"></td>
                             <td>{{$user->username ? $user->username : 'No Username'}}</td>
                             <td>{{$user->email ? $user->email : 'No Email'}}</td>
                             <td>@foreach($user->roles as $role)
