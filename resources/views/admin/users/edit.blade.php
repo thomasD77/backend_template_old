@@ -69,8 +69,6 @@
                   'multiple'=>'multiple'])!!}
               </div>
 
-
-
               <div class="mb-4">
                   <label class="form-label">Your Avatar</label>
                   <div class="mb-4">

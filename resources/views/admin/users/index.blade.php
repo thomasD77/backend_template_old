@@ -32,7 +32,6 @@
                     <h1 class="h3 fw-bold mb-2">
                         DataTable Users
                     </h1>
-
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -50,31 +49,28 @@
     <!-- END Hero -->
 
     <!-- Page Content -->
-    <div class="content">
+    <div class="content container-fluid">
 
         <!-- Dynamic Table Full -->
-        <div class="block block-rounded">
+        <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
                     Users
                 </h3>
             </div>
-            <div class="block-content block-content-full">
+            <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <table class="table table-striped table-hover table-vcenter js-dataTable-full fs-sm">
+                <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
-                        <tr>
-                            <th class="text-center" style="width: 80px;">#</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 10%;">Avatar</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Username</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Role</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Verified</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Created</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Updated</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Actions</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Registered</th>
+                        <th scope="col">Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
                         @if($users)
@@ -83,14 +79,11 @@
                             <td>{{$user->id ? $user->id : 'No ID'}}</td>
                             <td>{{$user->name ? $user->name : 'No Name'}}</td>
                             <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}"></td>
-                            <td>{{$user->username ? $user->username : 'No Username'}}</td>
                             <td>{{$user->email ? $user->email : 'No Email'}}</td>
                             <td>@foreach($user->roles as $role)
                                     <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
                                 @endforeach</td>
                             <td>{{$user->email_verified_at ? $user->email_verified_at : 'Not Verified'}}</td>
-                            <td>{{$user->created_at->diffForHumans()}}</td>
-                            <td>{{$user->updated_at->diffForHumans()}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
@@ -109,6 +102,7 @@
             </div>
         </div>
         <!-- END Dynamic Table Full -->
+
 
     </div>
     <!-- END Page Content -->

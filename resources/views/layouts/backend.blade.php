@@ -29,6 +29,7 @@
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
+        @livewireStyles
     </head>
     <body>
         <!-- Page Container -->
@@ -540,5 +541,6 @@
         <!-- <script src="{{ asset('/js/laravel.app.js') }}"></script> -->
 
         @yield('js_after')
+        @livewireScripts
     </body>
 </html>

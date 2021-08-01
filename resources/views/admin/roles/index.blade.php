@@ -49,8 +49,24 @@
     </div>
     <!-- END Hero -->
 
+
     <!-- Page Content -->
     <div class="content">
+
+        <div class="mb-4 d-flex justify-content-end">
+            {{--{!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@store']]) !!}
+                {!! Form::label('role', 'Role:',['class'=>'form-label']) !!}
+                {!! Form::text('email',) !!}
+                <div class="form-group mr-1">
+                    {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
+                </div>
+            {!! Form::close() !!}--}}
+
+            <div class="mb-4 col-4">
+                @livewire('role')
+            </div>
+
+        </div>
 
         <!-- Dynamic Table Full -->
         <div class="block block-rounded">
@@ -59,23 +75,23 @@
                     Roles
                 </h3>
             </div>
-            <div class="block-content block-content-full">
+            <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <table class="table table-striped table-hover table-vcenter js-dataTable-full fs-sm">
+                <table class="table table-striped table-hover table-vcenter  fs-sm">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 80px;">#</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Created</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Updated</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Actions</th>
+                            <th class="text-center">#</th>
+                            <th class="d-none d-sm-table-cell" >Name</th>
+                            <th class="d-none d-sm-table-cell" >Created</th>
+                            <th class="d-none d-sm-table-cell" >Updated</th>
+                            <th class="d-none d-sm-table-cell text-center" >Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if($roles)
                             @foreach($roles as $role)
                         <tr>
-                            <td>{{$role->id ? $role->id : 'No ID'}}</td>
+                            <td class="text-center">{{$role->id ? $role->id : 'No ID'}}</td>
                             <td>{{$role->name ? $role->name : 'No Role'}}</td>
                             <td>{{$role->created_at->diffForHumans()}}</td>
                             <td>{{$role->updated_at->diffForHumans()}}</td>

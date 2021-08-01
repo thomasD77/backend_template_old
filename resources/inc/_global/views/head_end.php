@@ -21,6 +21,7 @@
   <link rel="stylesheet" id="css-theme" href="<?php echo $one->assets_folder; ?>/css/themes/<?php echo $one->theme; ?>.min.css">
   <?php } ?>
   <!-- END Stylesheets -->
+
 </head>
 <body>
 
