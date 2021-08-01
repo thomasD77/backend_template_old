@@ -18,6 +18,10 @@ class CreateAvatarsTable extends Migration
             $table->string('file');
             $table->timestamps();
         });
+
+        DB::table('avatars')->insert([
+            'file'=>'1627646619user_thomas.jpg',
+        ]);
     }
 
     /**

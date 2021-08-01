@@ -542,5 +542,13 @@
 
         @yield('js_after')
         @livewireScripts
+
+        {{$role = Session::get('role_id')}}
+        <script>
+            window.addEventListener('closeModal', event => {
+                $('#exampleModal{{$role}}').modal('hide');
+            })
+
+        </script>
     </body>
 </html>

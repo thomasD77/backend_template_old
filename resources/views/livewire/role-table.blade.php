@@ -26,12 +26,40 @@
                         <td>{{$role->updated_at->diffForHumans()}}</td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
+                                <button type="button" class="btn btn-sm btn-alt-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal{{$role->id}}" title="Edit Client">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
+                                <button wire:click="removeRole({{$role->id}})" type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
+                                <div wire:ignore.self class="modal fade" id="exampleModal{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header ">
+                                                <h5 class="modal-title d-flex align-items-center text-dark" id="exampleModalLabel">Edit Role</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form wire:submit.prevent="submitFormRole({{$role->id}})">
+                                                    <div class="modal-body">
+                                                        <div  class="row">
+                                                            <div class="col-12">
+                                                                <input id="input1" name="name" type="text" class="form-control my-1 styleinput" placeholder="{{$role->name}}" aria-label="Username" aria-describedby="basic-addon1" wire:model="name">
+                                                                @error('name')
+                                                                <p class="text-danger"> {{ $message }}</p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-dark">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -41,4 +69,5 @@
         </table>
     </div>
 </div>
+
 

@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             'name'=>'Thomas',
             'username'=>'ThomasD7',
             'email'=>'thomas.demeulenaere@hotmail.com',
+            'avatar_id'=> 1,
             'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'password'=>bcrypt(12345678),
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
