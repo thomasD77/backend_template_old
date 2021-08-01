@@ -1,6 +1,6 @@
 <div>
-    <form wire:submit.prevent="submit" method="POST" class="row mb-0">
-        <div class="input-group">
+    <form wire:submit.prevent="submit" method="POST" class="row mb-0 ">
+        <div class="input-group border border-1 px-0">
             <button  class="btn btn-alt-primary">
                 <i class="fa fa-plus"></i>
             </button>

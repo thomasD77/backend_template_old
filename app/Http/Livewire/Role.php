@@ -9,16 +9,24 @@ class Role extends Component
 {
     public $name;
 
+    protected $rules = [
+        'name' => 'required',
+    ];
 
-    public function submit(Request $request)
+
+    public function submit()
     {
-        dd($request);
-        $this->name = $request->name;
-        dd($this->name);
+        $this->validate();
+        $data = [ 'name' => $this->name ];
 
         \App\Models\Role::create([
             'name' => $this->name,
+        ]);
 
+        $this->emit('updateRolesTable', $this->name);
+
+        $this->reset([
+            'name',
         ]);
 
     }
