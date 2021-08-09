@@ -49,7 +49,6 @@
     </div>
     <!-- END Hero -->
 
-
     <!-- Page Content -->
     <div class="content">
 
@@ -67,8 +66,9 @@
             </div>
 
         </div>
-
         @livewire('role-table')
+
+
 
     </div>
     <!-- END Page Content -->

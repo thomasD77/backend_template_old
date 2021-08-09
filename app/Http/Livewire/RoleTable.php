@@ -35,6 +35,8 @@ class RoleTable extends Component
 
     public function submitFormRole($id)
     {
+        $this->role_id = $id;
+        $this->emit('emitRole', $id);
 
         $this->validate();
 
@@ -51,11 +53,6 @@ class RoleTable extends Component
         $this->reset([
             'name',
         ]);
-
-        $this->role_id = $id;
-
-        Session::put('role_id', $id);
-        $this->dispatchBrowserEvent('closeModal');
     }
 
 
