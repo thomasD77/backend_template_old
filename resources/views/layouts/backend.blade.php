@@ -251,7 +251,7 @@
                             <li class="nav-main-heading">e-Commerce</li>
                             <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon si si-bulb"></i>
+                                    <i class="nav-main-link-icon fab fa-shopify"></i>
                                     <span class="nav-main-link-name">Shop</span>
                                 </a>
                                 <ul class="nav-main-submenu">
@@ -276,13 +276,18 @@
                             <li class="nav-main-heading">Contact</li>
                             <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                    <i class="nav-main-link-icon si si-bulb"></i>
+                                    <i class="nav-main-link-icon far fa-list-alt"></i>
                                     <span class="nav-main-link-name">Customers</span>
                                 </a>
                                 <ul class="nav-main-submenu">
                                     <li class="nav-main-item">
                                         <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('submissions.index')}}">
-                                            <span class="nav-main-link-name">Contact Form</span>
+                                            <span class="nav-main-link-name">Contact List</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('submission.archive')}}">
+                                            <span class="nav-main-link-name">Contact Archive</span>
                                         </a>
                                     </li>
 

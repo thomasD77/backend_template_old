@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Submission extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable =  [
         'name',
@@ -17,6 +16,7 @@ class Submission extends Model
         'phone',
         'date',
         'approval',
+        'archived',
         'description',
         ];
 }

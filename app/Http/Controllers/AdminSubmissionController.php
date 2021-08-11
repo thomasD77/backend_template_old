@@ -15,7 +15,9 @@ class AdminSubmissionController extends Controller
     public function index()
     {
         //
-        $submissions = Submission::all();
+        $submissions = Submission::where('archived', 0)
+            ->latest()
+            ->get();
         return view('admin.submissions.index', compact('submissions'));
     }
 
@@ -86,4 +88,29 @@ class AdminSubmissionController extends Controller
     {
         //
     }
+
+    public function archive()
+    {
+        $submissions = Submission::where('archived', 1)
+            ->latest()
+            ->get();
+        return view('admin.submissions.archive', compact('submissions'));
+    }
+
+    public function archiveSubmission($id)
+    {
+        $submission = Submission::findOrFail($id);
+        $submission->archived = 1;
+        $submission->update();
+        return redirect()->back();
+    }
+
+    public function UnArchiveSubmission($id)
+    {
+        $submission = Submission::findOrFail($id);
+        $submission->archived = 0;
+        $submission->update();
+        return redirect()->back();
+    }
+
 }

@@ -30,13 +30,13 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        DataTable Submissions
+                        Archive Submissions
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="javascript:void(0)">Archive</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             Submissions
@@ -85,9 +85,9 @@
                                                 </button>
                                             </a>
                                             {!! Form::open(['method'=>'PATCH',
-                                                'action'=>['App\Http\Controllers\AdminSubmissionController@archiveSubmission', $submission->id]]) !!}
+                                                'action'=>['App\Http\Controllers\AdminSubmissionController@UnArchiveSubmission', $submission->id]]) !!}
                                                 <div class="form-group">
-                                                    {!! Form::button('<i class="fa fa-archive"></i>', ['type'=>'submit','class'=>'btn btn-sm btn-alt-secondary mx-1', 'data-bs-toggle'=> "tooltip", 'title'=>"Archive Submission"]) !!}
+                                                    {!! Form::button('<i class="si si-refresh"></i>', ['type'=>'submit','class'=>'btn btn-sm btn-alt-secondary mx-1', 'data-bs-toggle'=> "tooltip", 'title'=>"Set Back Submission"]) !!}
                                                 </div>
                                             {!! Form::close() !!}
                                         </div>
