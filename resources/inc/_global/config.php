@@ -17,7 +17,8 @@ require '../resources/inc/_classes/Template.php';
 // **************************************************************************************************
 
 //                               : Name, version and assets folder's name
-$one                             = new Template('OneUI', '5.0', 'http://localhost/backend_template/resources/assets');
+
+$one                             = new Template('OneUI', '5.0', 'http://backend_template.loc/');
 
 
 // **************************************************************************************************

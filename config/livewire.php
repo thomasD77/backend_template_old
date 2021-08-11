@@ -54,8 +54,7 @@ return [
     |
     */
 
-    'asset_url' => env('APP_URL') . '/backend_template/public',
-
+    'asset_url' => env('APP_URL'),
     /*
     |--------------------------------------------------------------------------
     | Livewire Endpoint Middleware Group

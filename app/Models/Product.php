@@ -20,6 +20,5 @@ class Product extends Model
         'stock',
         'condition',
         'published',
-
-    ]
+    ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Submission;
 use Illuminate\Http\Request;
 
 class AdminSubmissionController extends Controller
@@ -14,6 +15,8 @@ class AdminSubmissionController extends Controller
     public function index()
     {
         //
+        $submissions = Submission::all();
+        return view('admin.submissions.index', compact('submissions'));
     }
 
     /**
@@ -46,6 +49,8 @@ class AdminSubmissionController extends Controller
     public function show($id)
     {
         //
+        $submission = Submission::findOrfail($id);
+        return view('admin.submissions.show', compact('submission'));
     }
 
     /**
