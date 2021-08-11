@@ -12,10 +12,10 @@
 // INCLUDED VIEWS
 // **************************************************************************************************
 
-$one->inc_side_overlay           = '../resources/inc/backend/views/inc_side_overlay.php';
-$one->inc_sidebar                = '../resources/inc/backend/views/inc_sidebar.php';
-$one->inc_header                 = '../resources/inc/backend/views/inc_header.php';
-$one->inc_footer                 = '../resources/inc/backend/views/inc_footer.php';
+$one->inc_side_overlay           = 'inc/backend/views/inc_side_overlay.php';
+$one->inc_sidebar                = 'inc/backend/views/inc_sidebar.php';
+$one->inc_header                 = 'inc/backend/views/inc_header.php';
+$one->inc_footer                 = 'inc/backend/views/inc_footer.php';
 
 
 // **************************************************************************************************

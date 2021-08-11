@@ -58,9 +58,9 @@ DARK MODE
   <div id="page-loader" class="show"></div>
 
   <?php } ?>
-  <?php if(isset($one->inc_side_overlay) && $one->inc_side_overlay) { include($one->inc_side_overlay); } ?>
-  <?php if(isset($one->inc_sidebar) && $one->inc_sidebar) { include($one->inc_sidebar); } ?>
-  <?php if(isset($one->inc_header) && $one->inc_header) { include($one->inc_header); } ?>
+  <?php if(isset($one->inc_side_overlay) && $one->inc_side_overlay) { include('../resources/' . $one->inc_side_overlay); } ?>
+  <?php if(isset($one->inc_sidebar) && $one->inc_sidebar) { include('../resources/' . $one->inc_sidebar); } ?>
+  <?php if(isset($one->inc_header) && $one->inc_header) { include('../resources/' . $one->inc_header); } ?>
 
   <!-- Main Container -->
   <main id="main-container">

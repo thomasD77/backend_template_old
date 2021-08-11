@@ -79,7 +79,7 @@
                             <td>{{$submission->name ? $submission->name : 'No Name'}}</td>
                             <td>{{$submission->email ? $submission->email : 'No Email'}}</td>
                             <td>{{$submission->date ? $submission->date : 'No Date'}}</td>
-                            <td>{{$submission->created_at ? $submission->created_at : 'No Date'}}</td>
+                            <td>{{$submission->created_at ? $submission->created_at->diffForHumans() : 'No Date'}}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route('submissions.show', $submission->id)}}"><button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show Submission">
